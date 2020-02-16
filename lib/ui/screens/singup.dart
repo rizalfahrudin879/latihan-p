@@ -1,6 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:latihan/data/model/register_result.dart';
+import 'package:latihan/data/model/user.dart';
+import 'package:latihan/data/repository/register_repository.dart';
 
-class SingUpPage extends StatelessWidget {
+class SingUpPage extends StatefulWidget {
+  @override
+  _SingUpPageState createState() => _SingUpPageState();
+}
+
+class _SingUpPageState extends State<SingUpPage> {
+  User user;
+  ResModel res;
+
+  var email = TextEditingController();
+  var noHp = TextEditingController();
+  var nama = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,17 +46,16 @@ class SingUpPage extends StatelessWidget {
                     ),
                     SizedBox(height: 50),
                     Card(
-                      elevation: 10,
+                      elevation: 10.0,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0)),
                       child: Container(
                         padding: EdgeInsets.only(left: 20),
                         child: TextFormField(
+                          controller: email,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            icon: Icon(
-                              Icons.email,
-                            ),
+                            icon: Icon(Icons.email),
                             hintText: 'EMAIL',
                             labelText: 'EMAIL',
                           ),
@@ -56,11 +70,12 @@ class SingUpPage extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.only(left: 20),
                         child: TextFormField(
+                          controller: noHp,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             icon: Icon(Icons.lock),
-                            hintText: 'PASSWORD',
-                            labelText: 'PASSWORD',
+                            hintText: 'NO HP',
+                            labelText: 'NO HP',
                           ),
                         ),
                       ),
@@ -73,28 +88,12 @@ class SingUpPage extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.only(left: 20),
                         child: TextFormField(
+                          controller: nama,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             icon: Icon(Icons.lock),
-                            hintText: 'PASSWORD',
-                            labelText: 'PASSWORD',
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    Card(
-                      elevation: 10.0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      child: Container(
-                        padding: EdgeInsets.only(left: 20),
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            icon: Icon(Icons.lock),
-                            hintText: 'PASSWORD',
-                            labelText: 'PASSWORD',
+                            hintText: 'NAMA',
+                            labelText: 'NAMA',
                           ),
                         ),
                       ),
@@ -138,7 +137,14 @@ class SingUpPage extends StatelessWidget {
                               ],
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            user = User(email.text.trim(), noHp.text.trim(),
+                                nama.text.trim());
+                            RegisterRepository().register(user).then((e) {
+                              resModelToJson(e);
+                              print(e.status);
+                            });
+                          },
                         ),
                       ],
                     )
@@ -158,7 +164,11 @@ class SingUpPage extends StatelessWidget {
                           style: TextStyle(fontSize: 20, color: Colors.orange))
                     ],
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    print(user.toMap());
+
+                    print(ResModel().toJson());
+                  },
                 ),
               ],
             ),

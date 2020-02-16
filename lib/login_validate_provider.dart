@@ -13,5 +13,6 @@ class LoginValidate with ChangeNotifier {
     _password = value;
     notifyListeners();
   }
+  
   bool get isValide => (_email.isEmpty || _password.isEmpty);
 }

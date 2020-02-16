@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:latihan/ui/login.dart';
+import 'package:latihan/ui/screens/splash.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SharedPreferences.getInstance().then((prefs) {
+    runApp(MyApp(prefs: prefs));
+  });
+}
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  final SharedPreferences prefs;
+  MyApp({this.prefs});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: LoginPage(),
+      home: Splash(prefs: prefs),
     );
   }
 }

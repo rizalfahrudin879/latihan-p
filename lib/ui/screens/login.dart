@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:latihan/login_validate_provider.dart';
-import 'package:latihan/ui/singup.dart';
+import 'package:latihan/ui/screens/singup.dart';
 import 'package:provider/provider.dart';
-
-import 'home.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -19,7 +17,7 @@ class LoginPage extends StatelessWidget {
               // padding: EdgeInsets.all(MediaQuery.of(context).size.width / 8),
               padding: EdgeInsets.all(25),
               child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.start, ///
                 // mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   Column(
@@ -126,11 +124,11 @@ class LoginPage extends StatelessWidget {
                               ),
                               onPressed: () {
                                 (validate.isValide)
-                                    ? null
+                                    ? debugPrint('kosong')
                                     : Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => HomePage()));
+                                            builder: (context) => null));
                               },
                             ),
                           ),
