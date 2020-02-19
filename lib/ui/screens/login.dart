@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:latihan/login_validate_provider.dart';
+import 'package:latihan/form_validate_provider.dart';
 import 'package:latihan/ui/screens/singup.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<LoginValidate>(
-      create: (context) => LoginValidate(),
+    return ChangeNotifierProvider<FormValidate>(
+      create: (context) => FormValidate(),
       child: Scaffold(
         body: SingleChildScrollView(
           padding:
@@ -40,7 +40,7 @@ class LoginPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10.0)),
                         child: Container(
                           padding: EdgeInsets.only(left: 20),
-                          child: Consumer<LoginValidate>(
+                          child: Consumer<FormValidate>(
                             builder: (context, valide, child) => TextFormField(
                               decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
                                 labelText: 'EMAIL',
                               ),
                               onChanged: (value) {
-                                valide.email = value;
+                                valide.emailLogin = value;
                               },
                             ),
                           ),
@@ -64,7 +64,7 @@ class LoginPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10.0)),
                         child: Container(
                           padding: EdgeInsets.only(left: 20),
-                          child: Consumer<LoginValidate>(
+                          child: Consumer<FormValidate>(
                             builder: (context, valide, child) => TextFormField(
                               decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -73,7 +73,7 @@ class LoginPage extends StatelessWidget {
                                 labelText: 'PASSWORD',
                               ),
                               onChanged: (value) {
-                                valide.password = value;
+                                valide.passwordLogin = value;
                               },
                             ),
                           ),
@@ -83,7 +83,7 @@ class LoginPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          Consumer<LoginValidate>(
+                          Consumer<FormValidate>(
                             builder: (context, validate, child) => RaisedButton(
                               //Color(0xFFf7be53),
                               shape: RoundedRectangleBorder(
@@ -153,9 +153,11 @@ class LoginPage extends StatelessWidget {
                     ),
                     onPressed: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SingUpPage()));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SingUpPage(),
+                        ),
+                      );
                     },
                   ),
                 ],

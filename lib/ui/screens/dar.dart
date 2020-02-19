@@ -4,6 +4,7 @@ import 'package:latihan/data/model/user.dart';
 import 'package:latihan/data/repository/repository.dart';
 import 'package:latihan/ui/screens/verifikasi.dart';
 
+
 class SingUpPage extends StatefulWidget {
   @override
   _SingUpPageState createState() => _SingUpPageState();
@@ -20,70 +21,86 @@ class _SingUpPageState extends State<SingUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.white12, elevation: 0),
-      body: Container(
-        color: Colors.white12,
+      appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            iconSize: 40,
+            color: Colors.grey,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0),
+      body: SingleChildScrollView(
         child: Form(
-          child: Column(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                child: Column(
+          child: Container(
+            padding: EdgeInsets.all(25),
+            child: Column(
+              children: <Widget>[
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Create Your Account',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 40,
-                          color: Colors.redAccent),
+                      'Create Account',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 50),
                     Card(
+                      elevation: 10.0,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25.0)),
+                          borderRadius: BorderRadius.circular(10.0)),
                       child: Container(
                         padding: EdgeInsets.only(left: 25),
-                        child: TextFormField(
-                          controller: nama,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Nama',
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 7),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0)),
-                      child: Container(
-                        padding: EdgeInsets.only(left: 20),
                         child: TextFormField(
                           controller: email,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'Email',
+                            icon: Icon(Icons.email),
+                            hintText: 'EMAIL',
+                            labelText: 'EMAIL',
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 7),
+                    SizedBox(height: 15),
                     Card(
+                      elevation: 10.0,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0)),
+                          borderRadius: BorderRadius.circular(10.0)),
                       child: Container(
                         padding: EdgeInsets.only(left: 20),
                         child: TextFormField(
                           controller: noHp,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'Nomor HP',
+                            icon: Icon(Icons.phone),
+                            hintText: 'NO HP',
+                            labelText: 'NO HP',
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 15),
+                    Card(
+                      elevation: 10.0,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 20),
+                        child: TextFormField(
+                          controller: nama,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            icon: Icon(Icons.person),
+                            hintText: 'NAMA',
+                            labelText: 'NAMA',
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 35),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
@@ -95,13 +112,16 @@ class _SingUpPageState extends State<SingUpPage> {
                           child: Container(
                             decoration: const BoxDecoration(
                               gradient: LinearGradient(
-                                colors: <Color>[Colors.pink, Colors.redAccent],
+                                colors: <Color>[
+                                  Color(0xFFf2c85a),
+                                  Color(0xFFfea13a),
+                                ],
                               ),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(80.0)),
                             ),
                             padding: EdgeInsets.symmetric(
-                                vertical: 13, horizontal: 25),
+                                vertical: 15, horizontal: 30),
                             child: Row(
                               children: <Widget>[
                                 Text(
@@ -120,13 +140,14 @@ class _SingUpPageState extends State<SingUpPage> {
                             ),
                           ),
                           onPressed: () async {
+                            
                             user = User(
                               email: email.text.trim(),
                               noHp: noHp.text.trim(),
                               nama: nama.text.trim(),
                             );
                             var resRegister = await Repository().register(user);
-
+                            print(resModelToJson(resRegister));
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -142,29 +163,29 @@ class _SingUpPageState extends State<SingUpPage> {
                     )
                   ],
                 ),
-              ),
-              SizedBox(height: 30),
-              // FlatButton(
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children: <Widget>[
-              //       Text(
-              //         'Dont have account?',
-              //         style: TextStyle(
-              //           fontSize: 20,
-              //           color: Colors.grey,
-              //         ),
-              //       ),
-              //       Text('Sign In',
-              //           style: TextStyle(fontSize: 20, color: Colors.orange))
-              //     ],
-              //   ),
-              //   onPressed: () {
-              //     print(user.toJson());
-              //     print(res.toJson());
-              //   },
-              // ),
-            ],
+                SizedBox(height: 30),
+                FlatButton(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Dont have account?',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      Text('Sign In',
+                          style: TextStyle(fontSize: 20, color: Colors.orange))
+                    ],
+                  ),
+                  onPressed: () {
+                    print(user.toJson());
+                    print(res.toJson());
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

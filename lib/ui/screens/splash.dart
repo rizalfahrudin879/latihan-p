@@ -15,8 +15,7 @@ class Splash extends StatelessWidget {
         MaterialPageRoute(
           builder: (context) {
             bool seen = (prefs.getBool('seen') ?? false);
-            if (seen) return LoginPage();
-            return OnBoard(prefs: prefs);
+           return seen ? LoginPage() : OnBoard(prefs: prefs);
           },
         ),
       );

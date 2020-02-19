@@ -1,47 +1,104 @@
+import 'dart:convert';
+
+User userFromJson(String str) => User.fromJson(json.decode(str));
+
+String userToJson(User data) => json.encode(data.toJson());
+
 class User {
-  String _email;
-  String _noHp;
-  String _nama;
+    String id;
+    String nama;
+    dynamic gender;
+    String email;
+    String noHp;
+    String aktiv;
+    dynamic status;
+    dynamic pendidikan;
+    dynamic tanggalLahir;
+    String tipe;
+    String idLondri;
+    String alamat;
+    dynamic propinsi;
+    dynamic kotaKab;
+    dynamic kota;
+    dynamic kecamatan;
+    dynamic kelurahan;
+    dynamic kodepos;
+    DateTime createdAt;
+    dynamic updatedAt;
 
-  //! Konstruktor versi 1
-  User(this._email, this._noHp, this._nama);
+    User({
+        this.id,
+        this.nama,
+        this.gender,
+        this.email,
+        this.noHp,
+        this.aktiv,
+        this.status,
+        this.pendidikan,
+        this.tanggalLahir,
+        this.tipe,
+        this.idLondri,
+        this.alamat,
+        this.propinsi,
+        this.kotaKab,
+        this.kota,
+        this.kecamatan,
+        this.kelurahan,
+        this.kodepos,
+        this.createdAt,
+        this.updatedAt,
+    });
 
-  //! Konstruktor versi 2: Konversi dari Map ke Note
-  User.fromMap(Map<String, dynamic> map) {
-    this._email = map['email'];
-    this._noHp = map['no_hp'];
-    this._nama = map['name'];
-  }
+    factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json["id"],
+        nama: json["nama"],
+        gender: json["gender"],
+        email: json["email"],
+        noHp: json["no_hp"],
+        aktiv: json["aktiv"],
+        status: json["status"],
+        pendidikan: json["pendidikan"],
+        tanggalLahir: json["tanggal_lahir"],
+        tipe: json["tipe"],
+        idLondri: json["id_londri"],
+        alamat: json["alamat"],
+        propinsi: json["propinsi"],
+        kotaKab: json["kota_kab"],
+        kota: json["kota"],
+        kecamatan: json["kecamatan"],
+        kelurahan: json["kelurahan"],
+        kodepos: json["kodepos"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"],
+    );
 
-  //! Getter dan Setter (Mengambil dan mengisi data ke dalam object)
-  //? Getter
-  String get email => _email;
-  String get noHp => _noHp;
-  String get nama => _nama;
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "nama": nama,
+        "gender": gender,
+        "email": email,
+        "no_hp": noHp,
+        "aktiv": aktiv,
+        "status": status,
+        "pendidikan": pendidikan,
+        "tanggal_lahir": tanggalLahir,
+        "tipe": tipe,
+        "id_londri": idLondri,
+        "alamat": alamat,
+        "propinsi": propinsi,
+        "kota_kab": kotaKab,
+        "kota": kota,
+        "kecamatan": kecamatan,
+        "kelurahan": kelurahan,
+        "kodepos": kodepos,
+        "created_at": createdAt.toString(),
+        "updated_at": updatedAt,
+    };
 
- //? Setter
-  set emailSet(String value) {
-    _email = value;
-  }
 
-  //? Setter
-  set noHpSet(String value) {
-    _noHp = value;
-  }
-
-  //? Setter
-  set namaSet(String value) {
-    _nama = value;
-  }
-
-  //! Konversi dari Note ke Map
-
-  Map<String, dynamic> toMap() {
-    Map<String, dynamic> map = Map<String, dynamic>();
-    map['email'] = email;
-    map['no_hp'] = noHp;
-    map['nama'] = nama;
-    return map;
-  }
-
+    Map<String, dynamic> toJsonRegis() => {
+        "nama": nama,
+        "email": email,
+        "no_hp": noHp,
+    };
 }
