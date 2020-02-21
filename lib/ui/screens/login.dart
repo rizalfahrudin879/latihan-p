@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:latihan/form_validate_provider.dart';
+import 'package:latihan/provider/form_validate_provider.dart';
 import 'package:latihan/ui/screens/singup.dart';
 import 'package:provider/provider.dart';
 

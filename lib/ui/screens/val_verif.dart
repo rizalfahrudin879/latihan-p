@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,9 +11,7 @@ class FormWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             TextField(
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(1)
-              ],
+              inputFormatters: [LengthLimitingTextInputFormatter(1)],
               autofocus: true,
               textInputAction: TextInputAction.next,
               decoration: InputDecoration(labelText: "Input 1"),

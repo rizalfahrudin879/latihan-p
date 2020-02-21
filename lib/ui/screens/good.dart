@@ -16,25 +16,10 @@ class RegisState extends State<SingUpPage> {
   double width;
   User user;
   ResModel res;
-    final _formKey = GlobalKey<FormState>();
+
   var email = TextEditingController();
   var noHp = TextEditingController();
   var nama = TextEditingController();
- String validateEmail(String value) {
-    Pattern pattern =
-        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regex = new RegExp(pattern);
-    if (value.isEmpty) {
-      return 'Email tidak boleh kosong';
-    } else if (value.isNotEmpty) {
-      if (!regex.hasMatch(value)) {
-        return 'Email tidak valid';
-      } else {
-        return null;
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -61,8 +46,8 @@ class RegisState extends State<SingUpPage> {
                         Positioned(
                             top: 20,
                             right: -100,
-                            child:
-                                _circularContainer(300, AppString.lightpurple)),
+                            child: _circularContainer(
+                                300, AppString.lightpurple)),
                         Positioned(
                             top: -100,
                             left: -45,
@@ -107,115 +92,109 @@ class RegisState extends State<SingUpPage> {
                       ],
                     )),
               ),
-              Form(
-                key: _formKey,
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(left: 30),
-                          child: Text(
-                            '',
-                            style: TextStyle(
-                              color: Colors.lightBlueAccent,
-                              fontSize: 30,
-                              fontWeight: FontWeight.w900,
-                            ),
+              Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(left: 30),
+                        child: Text(
+                          '',
+                          style: TextStyle(
+                            color: Colors.lightBlueAccent,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w900,
                           ),
-                        )
-                      ],
-                    ),
-                    //SizedBox(height: 20,),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 32),
-                      child: Material(
-                        elevation: 2.0,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        child: TextField(
-                          controller: nama,
-                          cursorColor: Colors.red,
-                          decoration: InputDecoration(
-                              hintText: "Nama",
-                              prefixIcon: Material(
-                                elevation: 0,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                child: Icon(
-                                  Icons.person,
-                                  color: Colors.cyan,
-                                ),
-                              ),
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 25, vertical: 13)),
                         ),
+                      )
+                    ],
+                  ),
+                  //SizedBox(height: 20,),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 32),
+                    child: Material(
+                      elevation: 2.0,
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      child: TextField(
+                        controller: nama,
+                        cursorColor: Colors.red,
+                        decoration: InputDecoration(
+                            hintText: "Nama",
+                            prefixIcon: Material(
+                              elevation: 0,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              child: Icon(
+                                Icons.person,
+                                color: Colors.cyan,
+                              ),
+                            ),
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 25, vertical: 13)),
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 32),
-                      child: Material(
-                        elevation: 2.0,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        child: TextFormField(
-                          controller: email,
-                          cursorColor: Colors.yellow,
-                          validator: validateEmail,
-                          // onChanged: validateEmail,
-                          
-                          decoration: InputDecoration(
-                            
-                              hintText: "Email",
-                              prefixIcon: Material(
-                                elevation: 0,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                child: Icon(Icons.email, color: Colors.cyan),
-                              ),
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 25, vertical: 13)),
-                        ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 32),
+                    child: Material(
+                      elevation: 2.0,
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      child: TextField(
+                        controller: email,
+
+                        cursorColor: Colors.yellow,
+                        decoration: InputDecoration(
+                            hintText: "Email",
+                            prefixIcon: Material(
+                              elevation: 0,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              child: Icon(Icons.email, color: Colors.cyan),
+                            ),
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 25, vertical: 13)),
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 32),
-                      child: Material(
-                        elevation: 2.0,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        child: TextField(
-                          controller: noHp,
-                          cursorColor: Colors.green,
-                          onChanged: (v) {},
-                          decoration: InputDecoration(
-                              hintText: "Nomor Hp",
-                              prefixIcon: Material(
-                                elevation: 0,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                child: Icon(
-                                  Icons.phone,
-                                  color: Colors.cyan,
-                                ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 32),
+                    child: Material(
+                      elevation: 2.0,
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      child: TextField(
+                        controller: noHp,
+
+                        cursorColor: Colors.green,
+                        decoration: InputDecoration(
+                            hintText: "Nomor Hp",
+                            prefixIcon: Material(
+                              elevation: 0,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              child: Icon(
+                                Icons.phone,
+                                color: Colors.cyan,
                               ),
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 25, vertical: 13)),
-                        ),
+                            ),
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 25, vertical: 13)),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 40,
@@ -253,13 +232,24 @@ class RegisState extends State<SingUpPage> {
                           ],
                         ),
                       ),
-                      onPressed: () async {
-                       if (_formKey.currentState.validate() ) {
-                        _formKey.currentState.save();
-                          
-                       }
+                       onPressed: () async {
+                            user = User(
+                              email: email.text.trim(),
+                              noHp: noHp.text.trim(),
+                              nama: nama.text.trim(),
+                            );
+                            var resRegister = await Repository().register(user);
 
-                      },
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Verifikasi(
+                                  resData: resRegister,
+                                  resUser: user,
+                                ),
+                              ),
+                            );
+                          },
                     ),
                   ),
                 ],
